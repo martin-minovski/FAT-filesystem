@@ -1,0 +1,257 @@
+
+#include "filesys.c"
+
+
+int main()
+{
+	char * step;
+	//Submission for CAS 20: 
+
+	step = ("//Format the drive."); printf("%s\n", step);
+	//Format the drive.
+	format();
+	
+	step = ("//Create 2 nested dirs:"); printf("%s\n", step);
+	//Create 2 nested dirs:
+	mymkdir("/firstdir/seconddir");
+	printf("%s\n", mylistdisk());
+
+	step = ("//Create a file:"); printf("%s\n", step);
+	//Create a file:
+	MyFILE * stream = myfopen("/firstdir/seconddir/testfile1.txt", "w");
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Write something in it:"); printf("%s\n", step);
+	//Write something in it:
+	char data[] = "Hi! This is testfile 1.";
+	int i;
+	for (i = 0; i < strlen(data); i++)
+	{
+		myfputc(data[i], stream);
+	}
+	printf("%s\n", mylistdisk());
+
+	
+	step = ("//Close the file:"); printf("%s\n", step);
+	//Close the file:
+	myfclose(stream);
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Print contents of dir:"); printf("%s\n", step);
+	//Print contents of dir:
+	char ** contents = mylistdir("/firstdir/seconddir");
+	i = 0;	
+	while (contents[i] != NULL)
+	{
+		printf("%s\n", contents[i]);
+		i++;
+	}
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Change to dir /firstdir/seconddir"); printf("%s\n", step);
+	//Change to dir /firstdir/seconddir
+	mychdir("/firstdir/seconddir");
+	printf("%s\n", mylistdisk());
+
+	
+	step = ("//List the current dir"); printf("%s\n", step);
+	//List the current dir
+	contents = mylistdir(".");
+	i = 0;	
+	while (contents[i] != NULL)
+	{
+		printf("%s\n", contents[i]);
+		i++;
+	}
+	printf("%s\n", mylistdisk());
+
+	
+	step = ("//Create a file:"); printf("%s\n", step);
+	//Create a file:
+	stream = myfopen("/firstdir/seconddir/testfile2.txt", "w");
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Write something in it:"); printf("%s\n", step);
+	//Write something in it:
+	char data2[] = "Hi! This is testfile 2.";
+	for (i = 0; i < strlen(data); i++)
+	{
+		myfputc(data2[i], stream);
+	}
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Close the file:"); printf("%s\n", step);
+	//Close the file:
+	myfclose(stream);
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Create a third dir:"); printf("%s\n", step);
+	//Create a third dir:
+	mymkdir("thirddir");
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Create a file:"); printf("%s\n", step);
+	//Create a file:
+	stream = myfopen("thirddir/testfile3.txt", "w");
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Write something in it:"); printf("%s\n", step);
+	//Write something in it:
+	char data3[] = "Hi! This is testfile 3.";
+	for (i = 0; i < strlen(data); i++)
+	{
+		myfputc(data3[i], stream);
+	}
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Close the file:"); printf("%s\n", step);
+	//Close the file:
+	myfclose(stream);
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Write out virtual disk"); printf("%s\n", step);
+	//Write out virtual disk
+	writedisk("virtualdisk18_20_a");
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Remove files"); printf("%s\n", step);
+	//Remove files
+	myremove("testfile1.txt");
+	myremove("testfile2.txt");
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Write out virtual disk"); printf("%s\n", step);
+	//Write out virtual disk
+	writedisk("virtualdisk18_20_b");
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Change to thirddir:"); printf("%s\n", step);
+	//Change to thirddir:
+	mychdir("thirddir");
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Remove testfile3.txt"); printf("%s\n", step);
+	//Remove testfile3.txt
+	myremove("testfile3.txt");
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Write out virtual disk"); printf("%s\n", step);
+	//Write out virtual disk
+	writedisk("virtualdisk18_20_c");
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Go to myseconddir"); printf("%s\n", step);
+	//Go to myseconddir
+	mychdir("/firstdir/seconddir");
+	printf("%s\n", mylistdisk());
+
+
+	
+	step = ("//Remove third dir"); printf("%s\n", step);
+	//Remove third dir
+	myrmdir("thirddir");
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Go to first dir"); printf("%s\n", step);
+	//Go to first dir
+	mychdir("/firstdir");
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Delete myseconddir"); printf("%s\n", step);
+	//Delete myseconddir
+	myrmdir("seconddir");
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Go to root"); printf("%s\n", step);
+	//Go to root
+	mychdir("/");
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Remove myfirstdir"); printf("%s\n", step);
+	//Remove myfirstdir
+	myrmdir("firstdir");
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Write out virtual disk"); printf("%s\n", step);
+	//Write out virtual disk
+	writedisk("virtualdisk18_20_d");
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Copy a file from real disk"); printf("%s\n", step);
+	//Copy a file from real disk
+	mycopyfromrealdisk("Makefile");
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Read the file"); printf("%s\n", step);
+	//Read the file
+	myreadstringfile("Makefile");
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Copy the file internally"); printf("%s\n", step);
+	//Copy the file internally
+	mycopyfile("Makefile", "Makefile_copy");
+	printf("%s\n", mylistdisk());
+
+	
+	step = ("//Delete the copy"); printf("%s\n", step);
+	//Delete the copy
+	myremove("Makefile_copy");
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Move the original file to a new dir"); printf("%s\n", step);
+	//Move the original file to a new dir
+	mymkdir("moved");	
+	mymovefile("Makefile", "moved/Makefile");
+	printf("%s\n", mylistdisk());
+
+
+	step = ("//Copy the file to real HDD as 'Makefile_exported'"); printf("%s\n", step);
+	//Copy the file to real HDD as "Makefile_exported
+	mycopytorealdisk("moved/Makefile", "Makefile_exported");
+	printf("%s\n", mylistdisk());
+
+	
+	step = ("//Delete 'moved' dir"); printf("%s\n", step);
+	//Delete "moved" dir
+	myrmdir("moved");
+	printf("%s\n", mylistdisk());
+
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,256 @@
+//Format the drive.
+//Create 2 nested dirs:
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+     > END OF LIST <
+
+//Create a file:
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+          testfile1.txt
+     > END OF LIST <
+
+//Write something in it:
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+          testfile1.txt
+     > END OF LIST <
+
+//Close the file:
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+          testfile1.txt
+     > END OF LIST <
+
+//Print contents of dir:
+testfile1.txt
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+          testfile1.txt
+     > END OF LIST <
+
+//Change to dir /firstdir/seconddir
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+          testfile1.txt
+     > END OF LIST <
+
+//List the current dir
+testfile1.txt
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+          testfile1.txt
+     > END OF LIST <
+
+//Create a file:
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+          testfile1.txt
+          testfile2.txt
+     > END OF LIST <
+
+//Write something in it:
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+          testfile1.txt
+          testfile2.txt
+     > END OF LIST <
+
+//Close the file:
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+          testfile1.txt
+          testfile2.txt
+     > END OF LIST <
+
+//Create a third dir:
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+          testfile1.txt
+          testfile2.txt
+          thirddir <DIR>
+     > END OF LIST <
+
+//Create a file:
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+          testfile1.txt
+          testfile2.txt
+          thirddir <DIR>
+               testfile3.txt
+     > END OF LIST <
+
+//Write something in it:
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+          testfile1.txt
+          testfile2.txt
+          thirddir <DIR>
+               testfile3.txt
+     > END OF LIST <
+
+//Close the file:
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+          testfile1.txt
+          testfile2.txt
+          thirddir <DIR>
+               testfile3.txt
+     > END OF LIST <
+
+//Write out virtual disk
+writedisk> virtualdisk[0] = CS3008 Operating Systems Assessment 2012
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+          testfile1.txt
+          testfile2.txt
+          thirddir <DIR>
+               testfile3.txt
+     > END OF LIST <
+
+//Remove files
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+          thirddir <DIR>
+               testfile3.txt
+     > END OF LIST <
+
+//Write out virtual disk
+writedisk> virtualdisk[0] = CS3008 Operating Systems Assessment 2012
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+          thirddir <DIR>
+               testfile3.txt
+     > END OF LIST <
+
+//Change to thirddir:
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+          thirddir <DIR>
+               testfile3.txt
+     > END OF LIST <
+
+//Remove testfile3.txt
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+          thirddir <DIR>
+     > END OF LIST <
+
+//Write out virtual disk
+writedisk> virtualdisk[0] = CS3008 Operating Systems Assessment 2012
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+          thirddir <DIR>
+     > END OF LIST <
+
+//Go to myseconddir
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+          thirddir <DIR>
+     > END OF LIST <
+
+//Remove third dir
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+     > END OF LIST <
+
+//Go to first dir
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     seconddir <DIR>
+     > END OF LIST <
+
+//Delete myseconddir
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     > END OF LIST <
+
+//Go to root
+     > LISTING ALL FILES AND FOLDERS:
+firstdir <DIR>
+     > END OF LIST <
+
+//Remove myfirstdir
+     > LISTING ALL FILES AND FOLDERS:
+     > END OF LIST <
+
+//Write out virtual disk
+writedisk> virtualdisk[0] = CS3008 Operating Systems Assessment 2012
+     > LISTING ALL FILES AND FOLDERS:
+     > END OF LIST <
+
+//Copy a file from real disk
+     > LISTING ALL FILES AND FOLDERS:
+Makefile
+     > END OF LIST <
+
+//Read the file
+     > File content of 'Makefile':
+HEADERS = filesys.c filesys.h
+
+default: shell
+
+program.o: shell.c $(HEADERS)
+	gcc -c shell.c -o shell.o
+
+program: shell.o
+	gcc shell.o -o shell
+
+clean:
+	-rm -f shell.o
+	-rm -f shell
+
+     > END OF FILE <
+     > LISTING ALL FILES AND FOLDERS:
+Makefile
+     > END OF LIST <
+
+//Copy the file internally
+     > LISTING ALL FILES AND FOLDERS:
+Makefile
+Makefile_copy
+     > END OF LIST <
+
+//Delete the copy
+     > LISTING ALL FILES AND FOLDERS:
+Makefile
+     > END OF LIST <
+
+//Move the original file to a new dir
+     > LISTING ALL FILES AND FOLDERS:
+moved <DIR>
+     Makefile
+     > END OF LIST <
+
+//Copy the file to real HDD as 'Makefile_exported'
+     > LISTING ALL FILES AND FOLDERS:
+moved <DIR>
+     Makefile
+     > END OF LIST <
+
+//Delete 'moved' dir
+     > LISTING ALL FILES AND FOLDERS:
+     > END OF LIST <
+
